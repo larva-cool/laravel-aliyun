@@ -3,6 +3,8 @@
  * This is NOT a freeware, use is subject to license terms
  */
 
+declare(strict_types=1);
+
 namespace Larva\Aliyun\Jobs\Cdn;
 
 use AlibabaCloud\Cdn\Cdn;
@@ -54,7 +56,7 @@ class PushObjectCacheJob implements ShouldQueue
      * @throws ClientException
      * @throws ServerException
      */
-    public function handle()
+    public function handle(): void
     {
         $response = Cdn::v20180510()
             ->pushObjectCache()

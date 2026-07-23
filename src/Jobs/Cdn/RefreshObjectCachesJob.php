@@ -3,6 +3,8 @@
  * This is NOT a freeware, use is subject to license terms
  */
 
+declare(strict_types=1);
+
 namespace Larva\Aliyun\Jobs\Cdn;
 
 use AlibabaCloud\Cdn\Cdn;
@@ -26,7 +28,7 @@ class RefreshObjectCachesJob implements ShouldQueue
      *
      * @var int
      */
-    public $tries = 3;
+    public int $tries = 3;
 
     /**
      * @var string|array
@@ -61,7 +63,7 @@ class RefreshObjectCachesJob implements ShouldQueue
      * @throws ClientException
      * @throws ServerException
      */
-    public function handle()
+    public function handle(): void
     {
         $response = Cdn::v20180510()->refreshObjectCaches()
             ->withObjectPath(implode("\n", $this->urls))

@@ -2,6 +2,7 @@
 /**
  * This is NOT a freeware, use is subject to license terms
  */
+declare(strict_types=1);
 
 namespace Larva\Aliyun\Jobs\Dns;
 
@@ -26,37 +27,37 @@ class UpdateDomainRecordJob implements ShouldQueue
      *
      * @var int
      */
-    public $tries = 2;
+    public int $tries = 2;
 
     /**
      * @var string
      */
-    protected $recordId;
+    protected string $recordId;
 
     /**
      * @var string
      */
-    protected $rr;
+    protected string $rr;
 
     /**
      * @var string
      */
-    protected $type;
+    protected string $type;
 
     /**
      * @var string
      */
-    protected $value;
+    protected string $value;
 
     /**
      * @var int
      */
-    protected $ttl;
+    protected int $ttl;
 
     /**
      * @var string
      */
-    protected $line;
+    protected string $line;
 
     /**
      * Create a new job instance.
@@ -85,7 +86,7 @@ class UpdateDomainRecordJob implements ShouldQueue
      * @throws ClientException
      * @throws ServerException
      */
-    public function handle()
+    public function handle(): void
     {
         $response = Alidns::v20150109()->updateDomainRecord()
             ->withRecordId($this->recordId)

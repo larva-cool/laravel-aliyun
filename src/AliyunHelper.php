@@ -3,6 +3,8 @@
  * This is NOT a freeware, use is subject to license terms
  */
 
+declare(strict_types=1);
+
 namespace Larva\Aliyun;
 
 use AlibabaCloud\Client\Exception\ClientException;
@@ -29,7 +31,7 @@ class AliyunHelper
      * @throws ClientException
      * @throws ServerException
      */
-    public static function sendSms(array|string $phoneNumbers, string $templateCode, $templateParam, string $signName, string $smsUpExtendCode = null, string $outId = null): Result
+    public static function sendSms(array|string $phoneNumbers, string $templateCode, array|string $templateParam, string $signName, ?string $smsUpExtendCode = null, ?string $outId = null): Result
     {
         if (is_array($phoneNumbers)) {
             $phoneNumbers = implode(",", $phoneNumbers);

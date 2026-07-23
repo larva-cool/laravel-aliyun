@@ -3,6 +3,8 @@
  * This is NOT a freeware, use is subject to license terms
  */
 
+declare(strict_types=1);
+
 namespace Larva\Aliyun\Jobs\Sms;
 
 use AlibabaCloud\Client\Exception\ClientException;
@@ -31,7 +33,7 @@ class SendSmsJob implements ShouldQueue
     /**
      * @var array|string
      */
-    protected $phoneNumbers;
+    protected array|string $phoneNumbers;
 
     /**
      * @var string
@@ -41,7 +43,7 @@ class SendSmsJob implements ShouldQueue
     /**
      * @var array|string
      */
-    protected $templateParam;
+    protected array|string $templateParam;
 
     /**
      * @var string
@@ -51,12 +53,12 @@ class SendSmsJob implements ShouldQueue
     /**
      * @var string|null
      */
-    protected string $smsUpExtendCode;
+    protected ?string $smsUpExtendCode;
 
     /**
      * @var string|null
      */
-    protected string $outId;
+    protected ?string $outId;
 
     /**
      * @param array|string $phoneNumbers
@@ -66,7 +68,7 @@ class SendSmsJob implements ShouldQueue
      * @param string|null $smsUpExtendCode
      * @param string|null $outId
      */
-    public function __construct(array|string $phoneNumbers, string $templateCode, $templateParam, string $signName, string $smsUpExtendCode = null, string $outId = null)
+    public function __construct(array|string $phoneNumbers, string $templateCode, array|string $templateParam, string $signName, ?string $smsUpExtendCode = null, ?string $outId = null)
     {
         $this->phoneNumbers = $phoneNumbers;
         $this->templateCode = $templateCode;
